@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="base::common_head(~{::title},~{})">
-    <title>zookeeper连接管理</title>
+    <title>Zookeeper connection management</title>
 </head>
 <body>
 <div th:replace="~{base::navbar}"></div>
@@ -12,22 +12,22 @@
     </div>
     <div class="maincontent row">
         <ul class="breadcrumb">
-            <li class="active">Zookeeper管理</li>
+            <li class="active">Zookeeper management</li>
         </ul>
         <div class="col-sm-12">
             <div class="jumbotron">
-                <button type="button" class="btn btn-primary" id="btn_add_zk">添加zookeeper连接</button>
+                <button type="button" class="btn btn-primary" id="btn_add_zk">Add zookeeper connection</button>
             </div>
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>别名</th>
-                        <th>连接状态</th>
-                        <th>主机和端口</th>
-                        <th>创建时间</th>
-                        <th>操作</th>
+                        <th>Alias</th>
+                        <th>Connection Status</th>
+                        <th>Host and port</th>
+                        <th>Creation time</th>
+                        <th>operating</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -44,8 +44,8 @@
                         <td th:text="${zkinfo.hosts}"></td>
                         <td th:text="${zkinfo.createTime}"></td>
                         <td>
-                            <button type="button" class="btn btn-primary btn-sm" th:if="${zkinfo.connState=='LOST'}" th:value="${zkinfo.alias}" name="btn_reconnect">重新连接</button>
-                            <button type="button" class="btn btn-danger btn-sm" th:value="${zkinfo.alias}" name="btn_delete">删除</button>
+                            <button type="button" class="btn btn-primary btn-sm" th:if="${zkinfo.connState=='LOST'}" th:value="${zkinfo.alias}" name="btn_reconnect">reconnect</button>
+                            <button type="button" class="btn btn-danger btn-sm" th:value="${zkinfo.alias}" name="btn_delete">delete</button>
                         </td>
                     </tr>
                     </tbody>
@@ -65,14 +65,14 @@
             <div class="modal-body">
                 <form id="form_zkinfo" th:action="@{/zkinfo}" class="form-horizontal" method="post">
                     <div class="form-group">
-                        <label for="modal_input_username" class="control-label  col-sm-4">别名</label>
+                        <label for="modal_input_username" class="control-label  col-sm-4">Alias</label>
                         <div class="col-sm-7">
                             <input type="text" class="form-control" name="alias" id="modal_input_username" maxlength="20"
                                    autocomplete="new-password">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="modal_input_password" class="control-label  col-sm-4">zookeeper地址和端口</label>
+                        <label for="modal_input_password" class="control-label  col-sm-4">zookeeper address and port</label>
                         <div class="col-sm-7">
                             <input type="text" class="form-control" name="hosts" id="modal_input_password"
                                    placeholder="192.168.1.100:2181,192.168.1.101:2181"
@@ -82,8 +82,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" id="btn_zk_submit">提交</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">shut down</button>
+                <button type="button" class="btn btn-primary" id="btn_zk_submit">submit</button>
             </div>
         </div>
     </div>
@@ -104,8 +104,8 @@
     $("button[name='btn_delete']").on("click", function () {
         var btn = $(this);
         swal({
-            title: "你确定?",
-            text: "删除之后，该数据将无法再恢复!",
+            title: "you sure?",
+            text: "After deleting, the data can no longer be recovered!",
             icon: "warning",
             buttons: true,
             dangerMode: true
@@ -120,11 +120,11 @@
                         if (10000 === data.code) {
                             window.location.href = contextPath + "zkinfos";
                         } else {
-                            swal("删除" + btn.val() + "连接失败", data.msg, "error");
+                            swal("delete" + btn.val() + "Connection failed", data.msg, "error");
                         }
                     },
                     error: function (status, errorThrown) {
-                        swal("删除" + btn.val() + "连接失败", status.statusText + " " + errorThrown.toString(), "error");
+                        swal("delete" + btn.val() + "Connection failed", status.statusText + " " + errorThrown.toString(), "error");
                     },
                     complete: function () {
                         btn.removeAttr("disabled");
@@ -145,11 +145,11 @@
                 if (10000 === data.code) {
                     window.location.href = contextPath + "zkinfos";
                 } else {
-                    swal("重连" + btn.val() + "失败", data.msg, "error");
+                    swal("Reconnection" + btn.val() + "failure", data.msg, "error");
                 }
             },
             error: function (textStatus, errorThrown) {
-                swal("重连" + btn.val() + "失败", status.statusText + " " + errorThrown.toString(), "error");
+                swal("Reconnection" + btn.val() + "failure", status.statusText + " " + errorThrown.toString(), "error");
             },
             complete: function () {
                 btn.removeAttr("disabled");
@@ -158,7 +158,7 @@
     });
 
     $("#btn_add_zk").on("click", function () {
-        modalZk.find("#modal_user_title").html("添加zookeeper配置");
+        modalZk.find("#modal_user_title").html("Add zookeeper configuration");
         modalZk.modal();
     });
 
@@ -192,7 +192,7 @@
         };
         ws.onmessage = function (ev) {
             var dataJson = JSON.parse(ev.data);
-            var message = "连接: " + dataJson.connStr + "状态变化为: " + dataJson.connState;
+            var message = "connection: " + dataJson.connStr + "Status changes to: " + dataJson.connState;
             var type;
             if("SUSPENDED" === dataJson.connState){
                 type = "warning";
@@ -201,7 +201,7 @@
             } else {
                 type = "info";
             }
-            swal("连接状态发生变化", message, type).then(function (value) {
+            swal("The connection status has changed", message, type).then(function (value) {
                 window.location.reload();
             });
         };

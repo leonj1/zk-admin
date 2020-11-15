@@ -44,9 +44,9 @@
     </div>
 </nav>
 <ul th:fragment="sidebar(li)">
-    <li><a th:href="@{/index}">首页</a></li>
-    <li th:if="${session.session_user.id} == 1"><a th:href="@{/users}">用户管理</a></li>
-    <li th:if="${session.session_user.id} == 1"><a th:href="@{/zkinfos}">zookeeper管理</a></li>
+    <li><a th:href="@{/index}">Home</a></li>
+    <li th:if="${session.session_user.id} == 1"><a th:href="@{/users}">User Management</a></li>
+    <li th:if="${session.session_user.id} == 1"><a th:href="@{/zkinfos}">zookeeper management</a></li>
     <li th:each="zkinfo:${zkinfos}" th:if="${zkinfo.connState != 'LOST'}"><a th:href="@{/zkinfo/{alias}(alias=${zkinfo.alias})}" th:text="${zkinfo.alias}"></a></li>
 </ul>
 <div th:fragment="script">

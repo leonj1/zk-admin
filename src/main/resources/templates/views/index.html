@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="base::common_head(~{::title},~{})">
-    <title>首页</title>
+    <title>Home</title>
 </head>
 <body>
 <div th:replace="~{base::navbar}"></div>
@@ -12,16 +12,16 @@
     </div>
     <div class="maincontent row">
         <ul class="breadcrumb">
-            <li class="active">首页</li>
+            <li class="active">Home</li>
         </ul>
         <div class="col-sm-12">
             <div class="jumbotron">
-                <h1>spring-boot搭建的zookeeper管理后台</h1>
-                <h4>支持无权限验证的持久节点的操作</h4>
-                <h4>支持添加和修改节点操作，目前修改操作只支持非父类节点</h4>
-                <h4>选中节点后，鼠标右键支持复制节点，粘贴节点，刷新节点，删除节点</h4>
-                <h4>连接列表页，支持连接状态变化时提醒刷新页面</h4>
-                <h4>节点页，支持节点发生变化时自动刷新节点</h4>
+                <h1>spring-boot built zookeeper mgmt background</h1>
+                <h4>Support ops of persistent nodes without permission</h4>
+                <h4>Support for adding and modifying nodes, currently only supports adding non parent nodes</h4>
+                <h4>After selecting the node, the right mouse button supports copying the node, pasting the node, refreshing the node, and deleting the node</h4>
+                <h4>The connection list page supports reminding to refresh the page when the connection status changes</h4>
+                <h4>Node page, support automatic refresh node when node changes</h4>
             </div>
         </div>
     </div>
